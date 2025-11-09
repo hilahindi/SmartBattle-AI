@@ -1,0 +1,15 @@
+# Ignore Visual Studio files and folders
+.vs/
+*.vsidx
+*.user
+*.suo
+*.obj
+*.exe
+*.pdb
+*.log
+bin/
+Debug/
+Release/
+x64/
+*.zip
+*.rar
