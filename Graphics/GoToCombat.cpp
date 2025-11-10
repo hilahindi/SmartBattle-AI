@@ -219,7 +219,7 @@ void GoToCombat::Transition(NPC* pn)
 
     NPC* primaryTarget = nullptr;   // prefer enemy warriors/commanders for direct fire
     NPC* fallbackTarget = nullptr;  // any enemy we can hurt if no priority target visible
-    NPC* grenadeTarget = nullptr;   // enemy in grenade range but not visible
+    NPC* grenadeTarget = nullptr;   // enemy in grenade range but not visible (warriors only)
     for (NPC* enemy : enemies)
     {
         if (!enemy || !enemy->IsAlive()) continue;
@@ -244,7 +244,7 @@ void GoToCombat::Transition(NPC* pn)
                 pn->ReportEnemySpotted((int)enemy->getX(), (int)enemy->getY());
                 break; // focus on the first warrior we can shoot
             }
-            if (!grenadeTarget && dist2 <= GRENADE_RANGE * GRENADE_RANGE) {
+            if (pn->getRole() == Role::Warrior && !grenadeTarget && dist2 <= GRENADE_RANGE * GRENADE_RANGE) {
                 grenadeTarget = enemy;
             }
         }
@@ -252,7 +252,7 @@ void GoToCombat::Transition(NPC* pn)
             if (visible && inFireRange && !fallbackTarget) {
                 fallbackTarget = enemy;
             }
-            if (!grenadeTarget && dist2 <= GRENADE_RANGE * GRENADE_RANGE) {
+            if (pn->getRole() == Role::Warrior && !grenadeTarget && dist2 <= GRENADE_RANGE * GRENADE_RANGE) {
                 grenadeTarget = enemy;
             }
         }

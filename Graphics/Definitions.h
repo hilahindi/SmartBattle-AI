@@ -2,7 +2,7 @@
 
 #define MSZ 100
 
-#define SPEED  0.06
+#define SPEED  0.03
 #define M_PI     3.14159265358979323846
 
 #ifndef SHOW_SECURITY
